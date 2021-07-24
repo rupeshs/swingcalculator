@@ -1,25 +1,20 @@
 
  <mat-toolbar color="primary" class="mat-elevation-z6 app-navbar "   >
- 
   <span><mat-icon style="vertical-align: middle;">calculate</mat-icon>SwingCalculator</span>
- 
 </mat-toolbar>
-<div style="margin:20px;">
-<mat-chip-list aria-label="Prediction">
-  <mat-chip [ngStyle]="{'background-color': (profit>0) ? '#32CD32' : '#ff0000'}"selected>Profit : {{calculateProfit()}}</mat-chip>
-  <mat-chip  color="primary" selected>Shares: {{getNumberOfShares()}}</mat-chip>
-  <mat-chip >Stock value: {{getExpectedValue()}}</mat-chip>
-  <mat-chip color="accent" selected>Change : {{getStockChanged()}}</mat-chip>
-</mat-chip-list>
 
-</div>
-<mat-card>
-  <mat-card-header>
-    <mat-card-title>Swing trade profit calculator</mat-card-title>
-  </mat-card-header>
+<div style="margin:20px;">
+
+
+<mat-card >
   <mat-card-content>
-   
-    <mat-form-field appearance="fill" style="margin-right:10px;">
+    <mat-chip-list aria-label="Prediction">
+      <mat-chip [ngStyle]="{'background-color': (profit>0) ? '#3CB371' : '#FF0000'}"selected>Profit : {{profit|number:'1.2-2'}}</mat-chip>
+      <mat-chip  color="primary" selected>Shares : {{getNumberOfShares()}}</mat-chip>
+      <mat-chip >Stock value : {{getExpectedValue()}}</mat-chip>
+      <mat-chip color="accent" selected>Change : {{getStockChanged()}}</mat-chip>
+    </mat-chip-list>
+    <mat-form-field appearance="fill" style="margin-top:30px;">
       <mat-label>Stock price</mat-label>
       <input matInput placeholder="eg:90.05"  [(ngModel)]="stockPrice">
       <button *ngIf="stockPrice" matSuffix mat-icon-button aria-label="Clear" (click)="stockPrice=''">
@@ -37,10 +32,15 @@
 
     <mat-form-field  appearance="fill" style="margin-right:10px;">
       <mat-label>Expected stock price</mat-label >
-      <input matInput placeholder="eg:90.51"  [(ngModel)]="stockPriceExpected">
+      <input matInput placeholder="eg:100.51"  [(ngModel)]="stockPriceExpected">
+      <button *ngIf="stockPriceExpected" matSuffix mat-icon-button aria-label="Clear" (click)="stockPriceExpected=''">
+       <mat-icon>close</mat-icon>
+    </button>
     </mat-form-field>
-
-   
+   <button mat-button color="accent" (click)="calculateProfit()">Calculate</button>
   </mat-card-content>
 </mat-card>
+
 <footer mat-caption style="margin:20px;font-size:14px;">© 2021 <a href="https://github.com/rupeshs" >Rupesh Sreeraman</a> </footer>
+
+</div>
